@@ -1,6 +1,23 @@
+<header>
+    <div (click)="changeLanguageButton()" class="button-change-language">
+        <div *ngIf="language === 'en'" class="language-selected">
+            <img src="../assets//icons/icon-eua.png" alt="">
+            {{ 'app.homePage.english' | translate}}
+        </div>
+        <div *ngIf="language === 'pt-br'" class="language-selected">
+            <img src="../assets//icons/icon-brazil.png" alt="" >
+            {{ 'app.homePage.portuguese' | translate}}
+        </div>
+        <div *ngIf="languageListView" class="language-list-view">
+            <button (click)="changeLanguage('en')">
+                <img src="../assets//icons/icon-eua.png" alt="">
+                {{ 'app.homePage.english' | translate}}
+            </button>
+            <button (click)="changeLanguage('pt-br')">
+                <img src="../assets//icons/icon-brazil.png" alt="">
+                {{ 'app.homePage.portuguese' | translate}}
+            </button> 
+        </div>
+    </div>
+</header>
 <app-home-page></app-home-page>
-    <select [(ngModel)]="langs" (ngModelChange)="useLanguage($event)">
-        <option *ngFor="let languages of langs" [ngValue]="languages">{{languages}}</option>
-</select>
-<button (click)="useLanguage('en')">en</button>
-<button (click)="useLanguage('pt-br')">pt-br</button>

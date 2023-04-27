@@ -1,0 +1,12 @@
+.main-page h1{
+    font-size: 2.5rem;
+}
+.main-page h1, .main-page h3{
+    align-items: center;
+    text-align: center;
+    color: #6b6097;   
+}
+.main-page {
+    display: flex;
+    flex-direction: column;
+}

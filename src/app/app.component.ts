@@ -9,22 +9,17 @@ import {TranslateService} from "@ngx-translate/core";
 export class AppComponent {
   langs = ['en','pt-br'];
   language = this.langs[1];
+  languageListView = false;
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang(this.language);
-    console.log(this.language);
-    translate.use(this.language);
   }
 
-  changeLanguage(event: string): void{
-    console.log(event); 
-    this.translate.setDefaultLang(event);
-    this.translate.use(event);
-    console.log(this.translate); 
-  }
-
-  useLanguage(language: string): void {
-    console.log(language);
+  changeLanguage(language: string): void {
+    this.language = language;
     this.translate.use(language);
+}
+  changeLanguageButton(){
+    this.languageListView = !this.languageListView;
 }
 }

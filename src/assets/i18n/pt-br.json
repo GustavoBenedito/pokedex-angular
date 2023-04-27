@@ -1,11 +1,11 @@
 {
     "app":{
         "homePage":{
+            "english":"Inglês",
+            "portuguese":"Português (br)",
             "title": "Pokédex",
-            "search-homePage":"Pesquise por um pokémon pelo nome ou pelo número regional da pokedex",
+            "searchHomePage":"Pesquise por um pokémon pelo nome ou pelo número regional da pokedex",
             "make-by":"Feito por:"
-            },
-        "title": "Pokédex"
+            }
     }
-    
 }

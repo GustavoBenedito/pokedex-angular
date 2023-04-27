@@ -1,0 +1,66 @@
+*{
+    font-family: "Fira Sans","Trebuchet MS",Ubuntu,Helvetica,Arial sans-serif;
+}
+
+header{
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+.button-change-language{
+    opacity: 0.9;
+    position: absolute;
+    font-size: 14px;
+    right: 5%;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    background-color: #fffafa;
+}
+.button-change-language:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.language-list-view{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    align-items:center;
+    height: 65px;
+    border-radius: 5px;
+    background-color: #fffafa;
+}
+
+.language-list-view button{
+    opacity: 0.2;
+    display: flex;
+    align-items:center;
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+}
+
+.language-list-view button:hover{
+    cursor: pointer;
+    transition: 0.2s;
+    opacity: 1;
+}
+
+.language-list-view img{
+    height: 30px;
+    width: 40px;
+}
+
+.language-selected{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 95%;
+    border: 0;
+    background-color: transparent;
+}
+.language-selected img {
+    height: 30px;
+    width: 40px;
+}
