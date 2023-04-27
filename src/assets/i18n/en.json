@@ -1,0 +1,11 @@
+{
+    "app":{
+        "homePage":{
+            "title": "Pokedex",
+            "search-homePage":"Search for a pokemon by name or national pokedex number",
+            "make-by":"Make by:"
+            },
+        "title": "Pokedex"
+    }
+    
+}
