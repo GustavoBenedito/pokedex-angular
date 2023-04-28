@@ -7,12 +7,16 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    PokemonListComponent,
+    PokemonCardComponent
   ],
   imports: [
     FormsModule,      

@@ -5,7 +5,8 @@
             "portuguese":"Português (br)",
             "title": "Pokédex",
             "searchHomePage":"Pesquise por um pokémon pelo nome ou pelo número regional da pokedex",
-            "make-by":"Feito por:"
+            "make-by":"Feito por:",
+            "search":"Pesquisar.."
             }
     }
 }
