@@ -1,0 +1,8 @@
+<div class="pokemon-list" (click)="getPokemonImg()">
+    teste
+    <app-pokemon-card 
+        *ngFor="let pokemon of imgList; index as i" 
+        [imgList]="imgList"
+        [pokedexNumber]="i + 1"
+        ></app-pokemon-card>
+</div>

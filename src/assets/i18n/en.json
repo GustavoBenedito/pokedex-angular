@@ -1,0 +1,13 @@
+{
+    "app":{
+        "homePage":{
+            "english":"English",
+            "portuguese":"Portuguese (br)",
+            "title": "Pokedex",
+            "searchHomePage":"Search for a pokemon by name or national pokedex number",
+            "make-by":"Make by:",
+            "search":"Search.."
+            }
+    }
+    
+}

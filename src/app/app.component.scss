@@ -1,0 +1,54 @@
+*{
+    font-family: "Fira Sans","Trebuchet MS",Ubuntu,Helvetica,Arial sans-serif;
+}
+header{
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+.button-change-language{
+    opacity: 0.8;
+    position: absolute;
+    font-size: 14px;
+    right: 5%;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    background-color: #fffafa;
+}
+.button-change-language:hover, .language-list-view button:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.language-list-view, .language-list-view button, .language-selected{
+    display: flex;
+}
+.language-list-view button, .language-selected{
+    align-items:center;
+    background-color: transparent;
+    border: 0;
+}
+.language-list-view{
+    position: absolute;
+    flex-direction: column;
+    width: 150px;
+    align-items:center;
+    height: 65px;
+    border-radius: 5px;
+    background-color: #fffafa;
+}
+.language-list-view button{
+    opacity: 0.2;
+    width: 100%;
+}
+.language-list-view button:hover{
+    transition: 0.2s;
+}
+.language-list-view img, .language-selected img{
+    height: 30px;
+    width: 40px;
+}
+.language-selected{
+    justify-content: center;
+    width: 95%;
+}

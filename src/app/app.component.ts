@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokedex';
+  langs = ['en','pt-br'];
+  language = this.langs[1];
+  languageListView = false;
+
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang(this.language);
+  }
+
+  changeLanguage(language: string): void {
+    this.language = language;
+    this.translate.use(language);
+}
+  changeLanguageButton(){
+    this.languageListView = !this.languageListView;
+}
 }
