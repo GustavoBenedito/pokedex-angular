@@ -12,4 +12,7 @@ export class PokemonCardComponent {
   @Input()
   pokedexNumber: any;
 
+  ngOnInit(): void {
+    console.log(this.imgList);
+  }
 }
