@@ -9,14 +9,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
-
+import { PokemonService } from './service/pokemon.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     PokemonListComponent,
-    PokemonCardComponent
+    PokemonCardComponent,
   ],
   imports: [
     FormsModule,      
@@ -33,7 +33,7 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
         
   ],
   
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
