@@ -1,0 +1,21 @@
+.pokemon-card{
+    border-radius: 10px;
+    opacity: 0.9;
+}
+.pokemon-card:hover {
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.3;
+}
+.pokemon-card p{
+    color: #6b6097;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+.pokemon-card p::first-letter{
+    text-transform: uppercase;
+}
+.pokemon-card-img{
+    background-color: pink;
+    border-radius: 10px;
+}
