@@ -1,6 +1,6 @@
 <div class="pokemon-list">
     <app-pokemon-card 
-        *ngFor="let pokemon of pokemonService.dataList; index as i" 
+        *ngFor="let pokemon of pokemonService.pokeDataList; index as i" 
         [pokemon]="pokemon"
         [pokedexNumber]="i + 1"
     ></app-pokemon-card>

@@ -1,6 +1,7 @@
 .pokemon-card{
     border-radius: 10px;
     opacity: 0.9;
+    margin-bottom: 10%;
 }
 .pokemon-card:hover {
     cursor: pointer;
@@ -9,13 +10,21 @@
 }
 .pokemon-card p{
     color: #6b6097;
-    font-weight: 700;
+    margin: 0;
+}
+.poke-id{
+    padding-top: 0.5em;
+    font-size: 1em;
+    font-weight: 500;
+}
+.poke-name{
+    padding-top: 0.5em;
     font-size: 1.2em;
+    font-weight: 700;
 }
 .pokemon-card p::first-letter{
     text-transform: uppercase;
 }
 .pokemon-card-img{
-    background-color: pink;
     border-radius: 10px;
 }

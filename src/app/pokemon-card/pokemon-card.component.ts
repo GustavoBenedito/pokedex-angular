@@ -11,14 +11,16 @@ export class PokemonCardComponent {
   pokemon: any;
   @Input()
   pokedexNumber: any;
+  @Input()
+  pokeDataList: any;
 
   ngOnInit(): void {
-    console.log(this.pokemon);
+    console.log(this.pokemon, this.pokemon.color);
   }
 
   getPokemonImgList() {
     const numberFormat = this.loadingImgsIndex(this.pokedexNumber);
-
+    document.documentElement.style.setProperty('--colorBackgroundPoke', this.pokemon.color);
     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${numberFormat}.png`;
   }
 
@@ -28,7 +30,6 @@ export class PokemonCardComponent {
     while (s.length < (size || 2)) {
       s = '0' + s;
     }
-
     return s;
   }
 }

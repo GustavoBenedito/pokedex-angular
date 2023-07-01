@@ -9,6 +9,5 @@ import { PokemonService } from '../service/pokemon.service';
 })
 export class PokemonListComponent {
   constructor(public pokemonService: PokemonService){
-
   }
 }

@@ -1,37 +1,43 @@
+import { PokeDataInfoService } from './../poke-data-info.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
-  dataList = [];
-  colorList = []
-  numberPokemon: any;
-  
+  pokeList = [];
+  pokedexNumber = 151;
+  pokeDataList: any = [];
+
   constructor(private httpCLient: HttpClient){
-    this.getPokemonDataList(); 
+    this.getPokemonData();
   }
 
-  async getPokemonDataList(){
+  async getPokemonData(){
     try{
-      const getDataPokemonsList = await this.httpCLient.get<any>
-      ('https://pokeapi.co/api/v2/pokemon?limit=151').toPromise();
-      this.dataList = getDataPokemonsList.results;
+      for(let i = 1; i <= this.pokedexNumber; i++){
+        const getPokemonData = await this.httpCLient.get<any>
+        (`https://pokeapi.co/api/v2/pokemon/${i}`).toPromise();
+        getPokemonData.color = await this.getColorPokemon(i);
+        this.pokeDataList.push(getPokemonData);
+      }
     }
-    catch (error){
-      console.log('error' + error);
+    catch(error){
+      console.log('Error in get Pokemon data' + error);
     }
   }
 
-  async getPokemonColorList(){
+  async getColorPokemon(pokeID:any){
     try{
-      const getColorPokemonsList = await this.httpCLient.get<any>
-      ('https://pokeapi.co/api/v2/pokemon-colorlimit=151').toPromise();
-      this.colorList = getColorPokemonsList.results;
+      const getPokeColor = await this.httpCLient.get<any>
+      (`https://pokeapi.co/api/v2/pokemon-species/${pokeID}/`).toPromise();
+      const teste = getPokeColor.color.name;
+      return teste;
     }
-    catch (error){
-      console.log('error' + error);
+    catch(error){
+      console.log('Error in get Pokemon color' + error);
     }
   }
 }
