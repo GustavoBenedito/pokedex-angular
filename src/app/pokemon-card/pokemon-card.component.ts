@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import ColorThief from "color-thief-ts";
 
 @Component({
   selector: 'app-pokemon-card',
@@ -6,22 +7,23 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./pokemon-card.component.scss']
 })
 export class PokemonCardComponent {
+
+  constructor() { }
+
   img: any;
   @Input()
   pokemon: any;
   @Input()
   pokedexNumber: any;
-  @Input()
-  pokeDataList: any;
 
   ngOnInit(): void {
-    console.log(this.pokemon, this.pokemon.color);
+    // console.log(this.pokemon, this.pokemon.color);
   }
 
   getPokemonImgList() {
     const numberFormat = this.loadingImgsIndex(this.pokedexNumber);
-    document.documentElement.style.setProperty('--colorBackgroundPoke', this.pokemon.color);
-    return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${numberFormat}.png`;
+    const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${numberFormat}.png`
+    return image;
   }
 
   loadingImgsIndex(str: string | number, size = 3): string {
@@ -32,4 +34,6 @@ export class PokemonCardComponent {
     }
     return s;
   }
+
+
 }

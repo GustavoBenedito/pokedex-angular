@@ -8,7 +8,7 @@ import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 })
 export class PokemonService {
   pokeList = [];
-  pokedexNumber = 151;
+  pokedexNumber = 5;
   pokeDataList: any = [];
 
   constructor(private httpCLient: HttpClient){
