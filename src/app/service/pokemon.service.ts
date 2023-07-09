@@ -1,43 +1,48 @@
-import { PokeDataInfoService } from './../poke-data-info.service';
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Input } from '@angular/core';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnDestroy, OnInit} from '@angular/core';
+import { Subscription, map, of } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { Pokemon } from '../Pokemon';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PokemonService {
-  pokeList = [];
-  pokedexNumber = 5;
-  pokeDataList: any = [];
+interface PokeAPIResponse {
+  count: number,
+  next: string,
+  previous: string,
+  results: Array<Pokemon>
+}
+@Injectable()
+export class PokemonService{
+  pokemons: Array<Pokemon> = [];
+  pokedexNumber = 6;
+  apiPokeUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${this.pokedexNumber}&offset=0`;
 
-  constructor(private httpCLient: HttpClient){
-    this.getPokemonData();
-  }
-
-  async getPokemonData(){
+  constructor(private http: HttpClient){
     try{
-      for(let i = 1; i <= this.pokedexNumber; i++){
-        const getPokemonData = await this.httpCLient.get<any>
-        (`https://pokeapi.co/api/v2/pokemon/${i}`).toPromise();
-        getPokemonData.color = await this.getColorPokemon(i);
-        this.pokeDataList.push(getPokemonData);
-      }
+      this.getAllPokemonData().subscribe(
+        (results: Array<Pokemon>) => {
+          this.pokemons = results;
+          console.log(this.pokemons);
+      });
     }
     catch(error){
-      console.log('Error in get Pokemon data' + error);
+      console.log('Failed to get Pokemon data', error);
     }
   }
 
-  async getColorPokemon(pokeID:any){
-    try{
-      const getPokeColor = await this.httpCLient.get<any>
-      (`https://pokeapi.co/api/v2/pokemon-species/${pokeID}/`).toPromise();
-      const teste = getPokeColor.color.name;
-      return teste;
-    }
-    catch(error){
-      console.log('Error in get Pokemon color' + error);
-    }
-  }
+  getAllPokemonData(): Observable<Array<Pokemon>> {
+      return this.http.get<any>(this.apiPokeUrl)
+      .pipe(map((response:PokeAPIResponse) => response.results));
+}
+
+  // async getColorPokemon(pokeID:any){
+  //   try{
+  //     const getPokeColor = await this.http.get<any>
+  //     (`https://pokeapi.co/api/v2/pokemon-species/${pokeID}/`).toPromise();
+  //     const teste = getPokeColor.color.name;
+  //     return teste;
+  //   }
+  //   catch(error){
+  //     console.log('Error in get Pokemon color' + error);
+  //   }
+  // }
 }

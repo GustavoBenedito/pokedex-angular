@@ -17,7 +17,6 @@ export class PokemonCardComponent {
   pokedexNumber: any;
 
   ngOnInit(): void {
-    // console.log(this.pokemon, this.pokemon.color);
   }
 
   getPokemonImgList() {
