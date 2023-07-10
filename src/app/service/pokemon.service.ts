@@ -11,7 +11,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
   pokeImgList:any = [];
-  pokedexLimit = 7;
+  pokedexLimit = 151;
   pokemonsDetails:any = {};
 
   private apiPokeSubscription: Subscription = new Subscription;
@@ -37,11 +37,6 @@ export class PokemonService{
     }
     return forkJoin(observables);
   }
-  ngOnDestroy() {
-    if (this.apiPokeSubscription) {
-      this.apiPokeSubscription.unsubscribe();
-    }
-  }
 
   makeAPIPokemonImgList(){
     for(let i = 0; i < this.pokedexLimit; i++){
@@ -58,14 +53,31 @@ export class PokemonService{
   }
 
   makeAPIPokemonsDetails(){
-    console.log(
-    this.pokemonsDetails
-    );
     for(let i = 0; i < this.pokedexLimit; i++){
-      this.pokemons[i].id = this.pokemonsDetails[i].id;
-      this.pokemons[i].types = this.pokemonsDetails[i].types;
+      if(this.pokemonsDetails[i].id.toString().length < 2){
+        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
+        console.log(this.pokemons[i].id);
+      }
+      else if(this.pokemonsDetails[i].id.toString().length < 3){
+        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
+        console.log(this.pokemons[i].id);
+      }
+      else{
+        this.pokemons[i].id = this.pokemonsDetails[i].id;
+      }
+      if(this.pokemonsDetails[i].types.length > 1){
+        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name, this.pokemonsDetails[i].types[1].type.name];
+      }
+      else{
+        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name];
+      }
     }
-    console.log(this.pokemons);
+  }
+
+  ngOnDestroy() {
+    if (this.apiPokeSubscription) {
+      this.apiPokeSubscription.unsubscribe();
+    }
   }
 }
 

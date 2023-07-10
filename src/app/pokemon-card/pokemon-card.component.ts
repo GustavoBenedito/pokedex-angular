@@ -9,11 +9,15 @@ import { PokemonService } from '../service/pokemon.service';
 export class PokemonCardComponent {
 
   constructor(public pokemonService: PokemonService) {
-   }
+  }
 
   img: any;
   @Input()
   pokemon: any;
   @Input()
   pokedexLimit: any;
+
+   ngOnInit(){
+    console.log(this.pokemon)
+   }
 }

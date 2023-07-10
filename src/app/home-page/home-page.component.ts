@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomePageComponent {
   @Input()
   pokemons:any;
+
   constructor(public translate: TranslateService) {
   }
 }
