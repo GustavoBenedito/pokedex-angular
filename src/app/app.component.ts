@@ -2,7 +2,7 @@ import {TranslateService} from "@ngx-translate/core";
 import { PokemonService } from './service/pokemon.service';
 import { Subscription } from 'rxjs';
 import { Pokemon } from './Pokemon';
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,6 @@ export class AppComponent {
   language = this.langs[1];
   languageListView = false;
 
-  private apiPokeSubscription: Subscription = new Subscription;
   pokemons: Array<Pokemon> = [];
 
   constructor(private translate: TranslateService, public pokemonService: PokemonService) {
@@ -25,22 +24,33 @@ export class AppComponent {
     this.language = language;
     this.translate.use(language);
   }
+
   changeLanguageButton(){
     this.languageListView = !this.languageListView;
   }
 
   ngOnInit(){
-    this.pokemonService.getAllPokemonData().subscribe(
+    this.pokemonService.getAPIAllPokemonData().subscribe(
       (pokemons: Array<Pokemon>) => {
         for(let pokemon of pokemons){
           this.pokemons.push(pokemon);
         }
         this.getPokemonList();
+        this.getPokemonsDetails();
       });
   }
 
   getPokemonList(){
     this.pokemonService.pokemons = this.pokemons;
-    this.pokemonService.getPokemonImgList();
+    this.pokemonService.makeAPIPokemonImgList();
+  }
+
+  getPokemonsDetails(){
+    this.pokemonService.getAPIPokemonsDetails().subscribe(
+      (res) => {
+        this.pokemonService.pokemonsDetails = res;
+        this.pokemonService.makeAPIPokemonsDetails();
+    }
+    );
   }
 }

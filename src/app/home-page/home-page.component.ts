@@ -12,7 +12,4 @@ export class HomePageComponent {
   pokemons:any;
   constructor(public translate: TranslateService) {
   }
-
-  ngOnInit(){
-  }
 }

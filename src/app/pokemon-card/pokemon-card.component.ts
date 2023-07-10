@@ -16,15 +16,4 @@ export class PokemonCardComponent {
   pokemon: any;
   @Input()
   pokedexLimit: any;
-
-
-  ngOnInit(): void {
-    // console.log('teste card', this.pokemon);
-  }
-
-  getImgPoke(){
-    // return this.pokemonService.getPokemonImgList().subscribe() => {
-    //   const image = results;
-    // }
-  }
 }
