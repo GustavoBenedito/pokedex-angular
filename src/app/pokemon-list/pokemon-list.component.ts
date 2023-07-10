@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { PokemonService } from '../service/pokemon.service';
@@ -8,6 +9,11 @@ import { PokemonService } from '../service/pokemon.service';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent {
-  constructor(public pokemonService: PokemonService){
+  constructor(public pokemonService: PokemonService, public appComponent: AppComponent){
+  }
+
+  ngOnInit(){
+    console.log(
+      this.pokemonService.pokedexLimit);
   }
 }

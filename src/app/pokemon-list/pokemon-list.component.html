@@ -2,6 +2,6 @@
     <app-pokemon-card
         *ngFor="let pokemon of pokemonService.pokemons; index as i"
         [pokemon]="pokemon"
-        [pokedexNumber]="1 + i"
+        [pokedexLimit]="1 + i"
     ></app-pokemon-card>
 </div>

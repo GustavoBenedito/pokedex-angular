@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import ColorThief from "color-thief-ts";
+import { PokemonService } from '../service/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -8,31 +8,23 @@ import ColorThief from "color-thief-ts";
 })
 export class PokemonCardComponent {
 
-  constructor() { }
+  constructor(public pokemonService: PokemonService) {
+   }
 
   img: any;
   @Input()
   pokemon: any;
   @Input()
-  pokedexNumber: any;
+  pokedexLimit: any;
+
 
   ngOnInit(): void {
+    // console.log('teste card', this.pokemon);
   }
 
-  getPokemonImgList() {
-    const numberFormat = this.loadingImgsIndex(this.pokedexNumber);
-    const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${numberFormat}.png`
-    return image;
+  getImgPoke(){
+    // return this.pokemonService.getPokemonImgList().subscribe() => {
+    //   const image = results;
+    // }
   }
-
-  loadingImgsIndex(str: string | number, size = 3): string {
-    let s = String(str);
-
-    while (s.length < (size || 2)) {
-      s = '0' + s;
-    }
-    return s;
-  }
-
-
 }

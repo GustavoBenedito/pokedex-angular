@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnDestroy, OnInit} from '@angular/core';
-import { Subscription, map, of } from 'rxjs';
+import { Subscription, catchError, map, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pokemon } from '../Pokemon';
+import { average } from 'color.js'
 
 interface PokeAPIResponse {
   count: number,
@@ -10,30 +11,42 @@ interface PokeAPIResponse {
   previous: string,
   results: Array<Pokemon>
 }
+export const BASE_URL = 'https://pokeapi.co/api/v2';
+
 @Injectable()
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
-  pokedexNumber = 6;
-  apiPokeUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${this.pokedexNumber}&offset=0`;
+  pokeImgList:any = [];
+  pokedexLimit = 5;
 
+  apiPokeUrl = `https://pokeapi.co/api/v2/pokemon/?limit=${this.pokedexLimit}&offset=0`;
+  PokeImgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png`;
+  private apiPokeSubscription: Subscription = new Subscription;
   constructor(private http: HttpClient){
-    try{
-      this.getAllPokemonData().subscribe(
-        (results: Array<Pokemon>) => {
-          this.pokemons = results;
-          console.log(this.pokemons);
-      });
-    }
-    catch(error){
-      console.log('Failed to get Pokemon data', error);
-    }
   }
 
   getAllPokemonData(): Observable<Array<Pokemon>> {
-      return this.http.get<any>(this.apiPokeUrl)
-      .pipe(map((response:PokeAPIResponse) => response.results));
+    const params = new HttpParams()
+    .set('limit', this.pokedexLimit);
+    return this.http
+      .get<any>(`${BASE_URL}/pokemon`, { observe: 'response', params: params })
+      .pipe(
+        map(res => res.body.results),
+        catchError(error => of(error.url))
+      );
 }
 
+  getPokemonImgList(){
+    for(let i = 0; i < this.pokedexLimit; i++){
+      console.log(this.pokemons);
+      this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`;
+    }
+  }
+  ngOnDestroy() {
+    if (this.apiPokeSubscription) {
+      this.apiPokeSubscription.unsubscribe();
+    }
+  }
   // async getColorPokemon(pokeID:any){
   //   try{
   //     const getPokeColor = await this.http.get<any>
@@ -46,3 +59,5 @@ export class PokemonService{
   //   }
   // }
 }
+
+
