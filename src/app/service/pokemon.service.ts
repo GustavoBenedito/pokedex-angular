@@ -56,11 +56,9 @@ export class PokemonService{
     for(let i = 0; i < this.pokedexLimit; i++){
       if(this.pokemonsDetails[i].id.toString().length < 2){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-        console.log(this.pokemons[i].id);
       }
       else if(this.pokemonsDetails[i].id.toString().length < 3){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-        console.log(this.pokemons[i].id);
       }
       else{
         this.pokemons[i].id = this.pokemonsDetails[i].id;

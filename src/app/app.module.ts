@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokemonService } from './service/pokemon.service';
+import { DrawerPokeComponent } from './drawer-poke/drawer-poke.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { PokemonService } from './service/pokemon.service';
     PokemonCardComponent,
   ],
   imports: [
-    FormsModule,      
+    FormsModule,
     AppRoutingModule,
         BrowserModule,
         HttpClientModule,
@@ -30,10 +31,10 @@ import { PokemonService } from './service/pokemon.service';
                 deps: [HttpClient]
             }
         })
-        
+
   ],
-  
-  providers: [PokemonService],
+
+  providers: [PokemonService, DrawerPokeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injectable, Input } from '@angular/core';
 import { PokemonService } from '../service/pokemon.service';
+import { DrawerPokeComponent } from '../drawer-poke/drawer-poke.component';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.scss']
+  styleUrls: ['./pokemon-card.component.scss'],
 })
 export class PokemonCardComponent {
-
-  constructor(public pokemonService: PokemonService) {
-  }
+  constructor(
+    public pokemonService: PokemonService,
+    public drawerPokeComponent: DrawerPokeComponent
+  ) {}
 
   img: any;
   @Input()
@@ -17,7 +19,7 @@ export class PokemonCardComponent {
   @Input()
   pokedexLimit: any;
 
-   ngOnInit(){
-    console.log(this.pokemon)
-   }
+  openDrawerPoke(pokeId: any) {
+    this.drawerPokeComponent.openDrawer(pokeId);
+  }
 }

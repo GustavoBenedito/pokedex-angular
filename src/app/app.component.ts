@@ -1,6 +1,5 @@
 import {TranslateService} from "@ngx-translate/core";
 import { PokemonService } from './service/pokemon.service';
-import { Subscription } from 'rxjs';
 import { Pokemon } from './Pokemon';
 import { Component } from '@angular/core';
 
