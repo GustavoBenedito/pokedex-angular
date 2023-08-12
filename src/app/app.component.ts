@@ -12,7 +12,6 @@ export class AppComponent {
   langs = ['en','pt-br'];
   language = this.langs[1];
   languageListView = false;
-
   pokemons: Array<Pokemon> = [];
 
   constructor(private translate: TranslateService, public pokemonService: PokemonService) {
@@ -52,4 +51,6 @@ export class AppComponent {
     }
     );
   }
+
+
 }

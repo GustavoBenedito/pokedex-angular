@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable} from '@angular/core';
 import { Subscription, catchError, forkJoin, map, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pokemon } from '../Pokemon';
 import { prominent } from 'color.js'
+import { Injectable } from '@angular/core';
 
 export const BASE_URL = 'https://pokeapi.co/api/v2';
 
@@ -11,7 +11,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
   pokeImgList:any = [];
-  pokedexLimit = 151;
+  pokedexLimit = 5;
   pokemonsDetails:any = {};
 
   private apiPokeSubscription: Subscription = new Subscription;
@@ -57,7 +57,7 @@ export class PokemonService{
       if(this.pokemonsDetails[i].id.toString().length < 2){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
       }
-      else if(this.pokemonsDetails[i].id.toString().length < 3){
+      else if(this.pokemonsDetails[i].id.toString().length <= 3){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
       }
       else{

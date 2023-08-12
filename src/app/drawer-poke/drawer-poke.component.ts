@@ -6,11 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./drawer-poke.component.scss'],
 })
 export class DrawerPokeComponent {
-  shouldViewDrawer = false;
   constructor() {};
 
-  openDrawer(pokeId: any) {
-    this.shouldViewDrawer = true;
-    console.log(this.shouldViewDrawer, pokeId);
-  }
 }
