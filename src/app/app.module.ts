@@ -11,6 +11,13 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokemonService } from './service/pokemon.service';
 import { DrawerPokeComponent } from './drawer-poke/drawer-poke.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +27,12 @@ import { DrawerPokeComponent } from './drawer-poke/drawer-poke.component';
     PokemonCardComponent,
   ],
   imports: [
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
     FormsModule,
     AppRoutingModule,
         BrowserModule,
