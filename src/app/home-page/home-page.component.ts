@@ -10,13 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomePageComponent {
   @Input()
   pokemons:any;
-  shouldViewDrawer = false;
 
   constructor(public translate: TranslateService) {
   }
 
-  openDrawer(pokeId: any) {
-    this.shouldViewDrawer = true;
-    console.log(this.shouldViewDrawer, pokeId);
-  }
+
 }

@@ -1,6 +1,6 @@
+import { AppComponent } from './../app.component';
 import { PokemonService } from '../service/pokemon.service';
 import { DrawerPokeComponent } from '../drawer-poke/drawer-poke.component';
-import { HomePageComponent } from '../home-page/home-page.component';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -12,7 +12,7 @@ export class PokemonCardComponent {
   constructor(
     public pokemonService: PokemonService,
     public drawerPokeComponent: DrawerPokeComponent,
-    public homePageComponent: HomePageComponent,
+    public appComponent: AppComponent,
   ) {}
 
   img: any;
@@ -21,7 +21,8 @@ export class PokemonCardComponent {
   @Input()
   pokedexLimit: any;
 
-  openDrawerPoke(pokeId: any) {
-    this.homePageComponent.openDrawer(pokeId);
+  openDrawer(pokemonId: string){
+    console.log('teste', pokemonId);
+    this.appComponent.openDrawer();
   }
 }

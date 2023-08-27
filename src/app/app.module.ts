@@ -17,7 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
     PokemonCardComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatListModule,

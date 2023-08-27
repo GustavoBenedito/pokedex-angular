@@ -1,19 +1,23 @@
 import {TranslateService} from "@ngx-translate/core";
 import { PokemonService } from './service/pokemon.service';
 import { Pokemon } from './Pokemon';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild('drawer', { static: true }) drawer!: MatDrawer;
+
   langs = ['en','pt-br'];
   language = this.langs[1];
   languageListView = false;
   pokemons: Array<Pokemon> = [];
-
+  shouldViewDrawer = false;
   constructor(private translate: TranslateService, public pokemonService: PokemonService) {
     translate.setDefaultLang(this.language);
   }
@@ -21,6 +25,7 @@ export class AppComponent {
   changeLanguage(language: string): void {
     this.language = language;
     this.translate.use(language);
+
   }
 
   changeLanguageButton(){
@@ -50,5 +55,9 @@ export class AppComponent {
         this.pokemonService.makeAPIPokemonsDetails();
     }
     );
+  }
+
+  openDrawer(): void {
+    this.drawer.toggle();
   }
 }
