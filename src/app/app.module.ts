@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+    DrawerPokeComponent,
     HomePageComponent,
     PokemonListComponent,
     PokemonCardComponent,

@@ -13,6 +13,4 @@ export class HomePageComponent {
 
   constructor(public translate: TranslateService) {
   }
-
-
 }

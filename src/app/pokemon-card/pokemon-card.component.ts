@@ -1,3 +1,4 @@
+import { Pokemon } from './../Pokemon';
 import { AppComponent } from './../app.component';
 import { PokemonService } from '../service/pokemon.service';
 import { DrawerPokeComponent } from '../drawer-poke/drawer-poke.component';
@@ -21,8 +22,7 @@ export class PokemonCardComponent {
   @Input()
   pokedexLimit: any;
 
-  openDrawer(pokemonId: string){
-    console.log('teste', pokemonId);
+  openDrawer(pokemon: any){
     this.appComponent.openDrawer();
   }
 }

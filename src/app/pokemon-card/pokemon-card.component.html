@@ -1,5 +1,5 @@
-<div class="pokemon-card" >
-    <div class="pokemon-card-img" (click)="openDrawer(pokemon.id)" [ngStyle]="{'background-color': pokemon.color}">
+<div class="pokemon-card" (click)="openDrawer(pokemon.id)">
+    <div class="pokemon-card-img" [ngStyle]="{'background-color': pokemon.color}">
         <img [src]="pokemon.img">
     </div>
     <div class="footer-card">

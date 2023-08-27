@@ -11,7 +11,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
   pokeImgList:any = [];
-  pokedexLimit = 5;
+  pokedexLimit = 151;
   pokemonsDetails:any = {};
 
   private apiPokeSubscription: Subscription = new Subscription;
@@ -48,7 +48,7 @@ export class PokemonService{
   async makeAPIColorAverage(){
     for(let i = 0; i < this.pokedexLimit; i++){
        this.pokemons[i].color = await prominent(this.pokemons[i].img, {format: 'hex'});
-       this.pokemons[i].color = this.pokemons[i].color[1]
+       this.pokemons[i].color = this.pokemons[i].color[1];
     }
   }
 
