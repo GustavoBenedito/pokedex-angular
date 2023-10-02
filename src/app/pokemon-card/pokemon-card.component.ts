@@ -22,7 +22,7 @@ export class PokemonCardComponent {
   @Input()
   pokedexLimit: any;
 
-  openDrawer(pokemon: any){
-    this.appComponent.openDrawer();
+  openDrawer(pokemonData: any){
+    this.appComponent.openDrawer(pokemonData);
   }
 }

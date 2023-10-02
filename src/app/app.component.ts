@@ -3,6 +3,7 @@ import { PokemonService } from './service/pokemon.service';
 import { Pokemon } from './Pokemon';
 import { Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { DrawerPokeComponent } from "./drawer-poke/drawer-poke.component";
 
 
 @Component({
@@ -18,14 +19,13 @@ export class AppComponent {
   languageListView = false;
   pokemons: Array<Pokemon> = [];
   shouldViewDrawer = false;
-  constructor(private translate: TranslateService, public pokemonService: PokemonService) {
+  constructor(private translate: TranslateService, public pokemonService: PokemonService, public drawerPokeComponent: DrawerPokeComponent) {
     translate.setDefaultLang(this.language);
   }
 
   changeLanguage(language: string): void {
     this.language = language;
     this.translate.use(language);
-
   }
 
   changeLanguageButton(){
@@ -57,7 +57,8 @@ export class AppComponent {
     );
   }
 
-  openDrawer(): void {
+  openDrawer(pokemonData: any): void {
+    this.drawerPokeComponent.getDataForDrawer(pokemonData)
     this.drawer.toggle();
   }
 }
