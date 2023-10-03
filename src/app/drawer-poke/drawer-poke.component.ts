@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { PokemonService } from "../service/pokemon.service";
 
 @Component({
@@ -7,12 +7,18 @@ import { PokemonService } from "../service/pokemon.service";
   styleUrls: ['./drawer-poke.component.scss'],
 })
 export class DrawerPokeComponent {
-  constructor(public pokemonService: PokemonService) {};
+  @Input() pokemonData: any;
+  constructor(public pokemonService: PokemonService) {
+  };
 
   ngOnInit(){
+    console.log(this.pokemonData);
+    if(this.pokemonData){
+      this.getDrawerData(this.pokemonData);
+    }
   }
 
-  getDataForDrawer(pokemonData: any){
+  getDrawerData(pokemonData:any){
     console.log(pokemonData);
   }
 }

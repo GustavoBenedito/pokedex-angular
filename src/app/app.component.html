@@ -32,8 +32,9 @@
       </div>
   </header>
   <app-home-page></app-home-page>
-  <mat-drawer #drawer mode="side" position="end">
-    <app-drawer-poke>
+  <!-- colocar um detector de dispositivo, se for celular, mudara o MODE da drawer -->
+  <mat-drawer #drawer mode="side" position="end" class="drawer">
+    <app-drawer-poke [pokemonData]='pokemonData'>
     </app-drawer-poke>
   </mat-drawer>
 </mat-drawer-container>
