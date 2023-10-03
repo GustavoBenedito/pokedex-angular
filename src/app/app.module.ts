@@ -10,16 +10,32 @@ import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { PokemonService } from './service/pokemon.service';
+import { DrawerPokeComponent } from './drawer-poke/drawer-poke.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DrawerPokeComponent,
     HomePageComponent,
     PokemonListComponent,
     PokemonCardComponent,
   ],
   imports: [
-    FormsModule,      
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatToolbarModule,
+    FormsModule,
     AppRoutingModule,
         BrowserModule,
         HttpClientModule,
@@ -30,10 +46,10 @@ import { PokemonService } from './service/pokemon.service';
                 deps: [HttpClient]
             }
         })
-        
+
   ],
-  
-  providers: [PokemonService],
+
+  providers: [PokemonService, DrawerPokeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

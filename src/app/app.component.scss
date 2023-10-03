@@ -1,23 +1,25 @@
 *{
-    // font-family: "Fira Sans","Trebuchet MS",Ubuntu,Helvetica,Arial sans-serif;
     font-family: 'Pokemon Solid', sans-serif;
 }
 header{
     height: 50px;
     width: 100%;
-    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2.5%;
+    align-items: center;
+    text-align: center;
 }
-.button-change-language{
+.button-theme-language{
     opacity: 0.8;
-    position: absolute;
     font-size: 14px;
-    right: 5%;
     width: 150px;
+    height: 30px;
     border-radius: 5px;
     border: 1px solid #dedede;
     background-color: #fffafa;
 }
-.button-change-language:hover, .language-list-view button:hover{
+.button-theme-language:hover, .language-list-view button:hover{
     opacity: 1;
     cursor: pointer;
 }
@@ -52,4 +54,55 @@ header{
 .language-selected{
     justify-content: center;
     width: 95%;
+}
+mat-drawer{
+  width: 35%;
+  height: 100%;
+}
+.title{
+  height: 40px;
+}
+.title span{
+  font-size: 30px;
+}
+
+.title, .search-bar, button-theme-language{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.search-bar input{
+  height: 35px;
+  width: 20em;
+  min-width: 120px;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 14px;
+  color: #4d4c4c;
+  padding-left: 10px;
+}
+.search-bar button{
+  width: 10%;
+  background-color: #f6f6f6;
+  border-radius: 0.5rem;
+  border: none;
+  opacity: 0.5;
+  transition: 0.2s;
+  min-width: 33px;
+}
+.search-bar button:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+.search-bar button img{
+  width: 20px;
+}
+.drawer{
+  background-color: white;
+  width: 45%;
+  min-width: 400px;
+  max-height: 1200px;
+  position: fixed;
 }

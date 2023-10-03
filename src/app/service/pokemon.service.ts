@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable} from '@angular/core';
 import { Subscription, catchError, forkJoin, map, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pokemon } from '../Pokemon';
 import { prominent } from 'color.js'
+import { Injectable } from '@angular/core';
 
 export const BASE_URL = 'https://pokeapi.co/api/v2';
 
@@ -11,7 +11,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
   pokeImgList:any = [];
-  pokedexLimit = 151;
+  pokedexLimit = 256;
   pokemonsDetails:any = {};
 
   private apiPokeSubscription: Subscription = new Subscription;
@@ -40,15 +40,29 @@ export class PokemonService{
 
   makeAPIPokemonImgList(){
     for(let i = 0; i < this.pokedexLimit; i++){
+      // versao dos sonhos
+      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i+1}.svg`;
+
+      //versao oficial
       this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i+1}.png`;
+
+      //versao 'de casa'
+      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i+1}.png`;
+
+      //versao yellow
+      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${i+1}.png`;
+
+      //versao black white
+      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${i+1}.png`;
+
     }
     this.makeAPIColorAverage();
   }
 
   async makeAPIColorAverage(){
     for(let i = 0; i < this.pokedexLimit; i++){
-       this.pokemons[i].color = await prominent(this.pokemons[i].img, {format: 'hex'});
-       this.pokemons[i].color = this.pokemons[i].color[1]
+        this.pokemons[i].color = await prominent(this.pokemons[i].img, {format: 'hex'});
+        this.pokemons[i].color = this.pokemons[i].color[1];
     }
   }
 
@@ -56,11 +70,9 @@ export class PokemonService{
     for(let i = 0; i < this.pokedexLimit; i++){
       if(this.pokemonsDetails[i].id.toString().length < 2){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-        console.log(this.pokemons[i].id);
       }
-      else if(this.pokemonsDetails[i].id.toString().length < 3){
+      else if(this.pokemonsDetails[i].id.toString().length <= 3){
         this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-        console.log(this.pokemons[i].id);
       }
       else{
         this.pokemons[i].id = this.pokemonsDetails[i].id;
