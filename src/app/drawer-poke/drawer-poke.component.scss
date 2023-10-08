@@ -1,4 +1,18 @@
-.teste{
-  background-color: red;
-  position: absolute;
+.drawer-header{
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
+
+.drawer-header h1{
+  opacity: 1;
+  color: #6d6d6d;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+
+//fazer o titulo nao ficar tao colado no topo
