@@ -20,7 +20,7 @@ export class AppComponent {
   pokemons: Array<Pokemon> = [];
   shouldViewDrawer = false;
   pokemonData: any;
-  
+
   constructor(private translate: TranslateService, public pokemonService: PokemonService, public drawerPokeComponent: DrawerPokeComponent) {
     translate.setDefaultLang(this.language);
   }
@@ -62,5 +62,8 @@ export class AppComponent {
   openDrawer(pokemonData: any): void {
     this.pokemonData = pokemonData;
     this.drawer.toggle();
+  }
+  teste(){
+    console.log('teste')
   }
 }

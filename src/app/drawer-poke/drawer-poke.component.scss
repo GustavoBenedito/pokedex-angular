@@ -1,4 +1,5 @@
 .drawer-header{
+  padding-top: 5%;
   align-items: center;
   margin: 0 auto;
   display: flex;
@@ -15,4 +16,7 @@
   text-align: center;
 }
 
-//fazer o titulo nao ficar tao colado no topo
+.drawer-header img{
+  height: 45%;
+  width: 45%;
+}

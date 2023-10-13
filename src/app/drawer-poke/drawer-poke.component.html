@@ -1,4 +1,23 @@
-<div class="drawer-header">
+<header class="drawer-header" *ngIf="pokemonData">
   <h1>{{ pokemonData.name }}</h1>
   <img src="{{ pokemonData.img }}" alt="">
-</div>
+</header>
+<main>
+  <section class="characteristics">
+    <div class="ID"></div>
+    <div class="height"></div>
+    <div class="weight"></div>
+    <div class="abilities"></div>
+    <div class="type"></div>
+    <div class="forms"></div>
+  </section>
+  <section class="stats">
+    <div class="HP"></div>
+    <div class="Attack"></div>
+    <div class="Defense"></div>
+    <div class="Sp-Attack"></div>
+    <div class="Sp-Defense"></div>
+    <div class="Speed"></div>
+    <div class="Total"></div>
+  </section>
+</main>
