@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { PokemonService } from "../service/pokemon.service";
 
 @Component({
   selector: 'app-drawer-poke',
@@ -7,7 +8,7 @@ import { Component, Input } from "@angular/core";
 })
 export class DrawerPokeComponent {
   @Input() pokemonData: any;
-  constructor() {
+  constructor(public pokemonService:PokemonService) {
   };
 
   ngOnInit(){
@@ -17,6 +18,5 @@ export class DrawerPokeComponent {
   }
 
   getDrawerData(pokemonData:any){
-    console.log(pokemonData);
   }
 }

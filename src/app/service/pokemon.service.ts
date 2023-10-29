@@ -68,28 +68,25 @@ export class PokemonService{
 
   makeAPIPokemonsDetails(){
     for(let i = 0; i < this.pokedexLimit; i++){
-      if(this.pokemonsDetails[i].id.toString().length < 2){
-        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-      }
-      else if(this.pokemonsDetails[i].id.toString().length <= 3){
-        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-      }
-      else{
-        this.pokemons[i].id = this.pokemonsDetails[i].id;
-      }
-      if(this.pokemonsDetails[i].types.length > 1){
-        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name, this.pokemonsDetails[i].types[1].type.name];
-      }
-      else{
-        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name];
-      }
+      this.pokemons[i].id = this.getPokemonId(this.pokemonsDetails[i]);
+      this.pokemons[i].types = this.getPokemonType(this.pokemonsDetails[i]);
     }
   }
 
-  ngOnDestroy() {
-    if (this.apiPokeSubscription) {
-      this.apiPokeSubscription.unsubscribe();
+  getPokemonId(pokeDetails: any){
+    const pokeId = pokeDetails.id.toString();
+    if(pokeId.length <= 3){
+      return pokeDetails.id.toString().padStart(3, '0');
     }
+    return pokeDetails.id;
+  }
+
+  getPokemonType(pokeDetails:any){
+    return pokeDetails.types.map((pokeDetails: any) => pokeDetails.type.name);
+  }
+
+  ngOnDestroy() {
+      this.apiPokeSubscription?.unsubscribe();
   }
 }
 
