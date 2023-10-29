@@ -47,14 +47,12 @@ export class AppComponent {
 
   getPokemonList(){
     this.pokemonService.pokemons = this.pokemons;
-    this.pokemonService.makeAPIPokemonImgList();
   }
 
   getPokemonsDetails(){
     this.pokemonService.getAPIPokemonsDetails().subscribe(
       (res) => {
-        this.pokemonService.pokemonsDetails = res;
-        this.pokemonService.makeAPIPokemonsDetails();
+        this.pokemonService.getAllPokeDetails(res);
     }
     );
   }

@@ -5,4 +5,5 @@ export interface Pokemon{
   img: string;
   color: any;
   types: Array<string>;
+
 }
