@@ -10,7 +10,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 @Injectable()
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
-  pokedexLimit = 256;
+  pokedexLimit = 6;
 
   private apiPokeSubscription: Subscription = new Subscription;
 
@@ -42,15 +42,14 @@ export class PokemonService{
       this.pokemons[i].img = this.getPokeImg(pokeDetails[i].id);
       this.pokemons[i].types = this.getPokemonType(pokeDetails[i]);
       this.pokemons[i].color = await this.getPokeColorAverage(this.pokemons[i].img);
-      this.pokemons[i].height = pokeDetails[i].height;
-      this.pokemons[i].weight = pokeDetails[i].weight;
+      this.pokemons[i].height = this.getPokeHeight(pokeDetails[i].height);
+      this.pokemons[i].weight = this.getPokeWeight(pokeDetails[i].weight);
       this.pokemons[i].stats = this.getStatsPoke(pokeDetails[i].stats);
     }
-    console.log(this.pokemons);
+    return this.pokemons;
   }
 
   getPokeImg(pokeId: string){
-    //versao oficial
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`;
   }
 
@@ -68,6 +67,13 @@ export class PokemonService{
     return pokeDetails.types.map((pokeDetails: any) => pokeDetails.type.name);
   }
 
+  getPokeHeight(pokeHeight:number){
+    return pokeHeight/10;
+  }
+
+  getPokeWeight(pokeWeight:number){
+    return pokeWeight/10;
+  }
   getStatsPoke(stat: any){
     const stats:statsPoke = {
       hp: stat[0].base_stat,

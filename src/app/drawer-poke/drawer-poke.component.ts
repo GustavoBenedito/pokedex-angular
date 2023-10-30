@@ -11,12 +11,12 @@ export class DrawerPokeComponent {
   constructor(public pokemonService:PokemonService) {
   };
 
-  ngOnInit(){
+  ngOnChanges(){
     if(this.pokemonData){
-      this.getDrawerData(this.pokemonData);
+      this.settingInfos(this.pokemonData);
     }
   }
 
-  getDrawerData(pokemonData:any){
+  settingInfos(data:any){
   }
 }

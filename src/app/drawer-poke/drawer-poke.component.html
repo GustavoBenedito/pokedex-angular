@@ -2,22 +2,68 @@
   <h1>{{ pokemonData.name }}</h1>
   <img src="{{ pokemonData.img }}" alt="">
 </header>
-<main>
-  <section class="characteristics">
-    <div class="ID"></div>
-    <div class="height"></div>
-    <div class="weight"></div>
-    <div class="abilities"></div>
-    <div class="type"></div>
-    <div class="forms"></div>
+<main *ngIf="pokemonData" class="drawer-main">
+  <section class="info">
+    <div class="info-column">
+      <div class="id">
+        <span>ID</span>
+      </div>
+      <div class="height">
+        <span>Height</span>
+      </div>
+      <div class="weight">
+        <span>Weight</span>
+      </div>
+      <div class="types">
+        <span>Types</span>
+      </div>
+      <!-- <div class="abilities">{{pokemonData.id}}</div> -->
+      <!-- <div class="forms"></div> -->
+    </div>
+    <div class="info-cont">
+      <div class="id-cont">
+        #{{pokemonData.id}}
+      </div>
+      <div class="height-cont">
+        {{pokemonData.height}}m
+      </div>
+      <div class="weight-cont">
+        {{pokemonData.weight}}kg
+      </div>
+      <div class="types cont">
+        <div *ngFor="let type of pokemonData.types; index as i" [ngClass]="pokemonData.types[i]" class="type-button">
+          {{pokemonData.types[i]}}
+      </div>
+      </div>
+    </div>
   </section>
   <section class="stats">
-    <div class="HP"></div>
-    <div class="Attack"></div>
-    <div class="Defense"></div>
-    <div class="Sp-Attack"></div>
-    <div class="Sp-Defense"></div>
-    <div class="Speed"></div>
-    <div class="Total"></div>
+    <div class="stats-column">
+
+    </div>
+    <div class="HP">
+      <span>HP</span>
+    </div>
+    <div class="Attack">
+      <span>Attack</span>
+    </div>
+    <div class="Defense">
+      <span>Defense</span>
+    </div>
+    <div class="Sp-Attack">
+      <span>Special Attack</span>
+    </div>
+    <div class="Sp-Defense">
+      <span>Special Defense</span>
+    </div>
+    <div class="Speed">
+      <span>Speed</span>
+    </div>
+    {{pokemonData.stats.hp}}
+    {{pokemonData.stats.attack}}
+    {{pokemonData.stats.defense}}
+    {{pokemonData.stats.specialAttack}}
+    {{pokemonData.stats.specialDefense}}
+    {{pokemonData.stats.speed}}
   </section>
 </main>

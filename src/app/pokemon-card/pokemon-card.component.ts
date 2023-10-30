@@ -21,7 +21,6 @@ export class PokemonCardComponent {
   @Input() pokedexLimit: any;
 
   openDrawer(pokemonData: any){
-    this.drawerPokeComponent.getDrawerData(pokemonData);
     this.appComponent.openDrawer(pokemonData);
   }
 }
