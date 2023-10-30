@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subscription, catchError, forkJoin, map, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { Pokemon } from '../Pokemon';
+import { Pokemon, statsPoke } from '../Pokemon';
 import { prominent } from 'color.js'
 import { Injectable } from '@angular/core';
 
@@ -38,28 +38,20 @@ export class PokemonService{
 
   async getAllPokeDetails(pokeDetails: any){
     for(let i = 0; i < this.pokedexLimit; i++){
-      this.pokemons[i].img = this.getPokeImg(pokeDetails[i].id);
       this.pokemons[i].id = this.getPokemonId(pokeDetails[i]);
+      this.pokemons[i].img = this.getPokeImg(pokeDetails[i].id);
       this.pokemons[i].types = this.getPokemonType(pokeDetails[i]);
       this.pokemons[i].color = await this.getPokeColorAverage(this.pokemons[i].img);
+      this.pokemons[i].height = pokeDetails[i].height;
+      this.pokemons[i].weight = pokeDetails[i].weight;
+      this.pokemons[i].stats = this.getStatsPoke(pokeDetails[i].stats);
     }
+    console.log(this.pokemons);
   }
 
   getPokeImg(pokeId: string){
-    // versao dos sonhos
-    // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i+1}.svg`;
-
     //versao oficial
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId+1}.png`;
-
-    //versao 'de casa'
-    // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i+1}.png`;
-
-    //versao yellow
-    // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${i+1}.png`;
-
-    //versao black white
-    // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${i+1}.png`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`;
   }
 
   async getPokeColorAverage(pokeImg: string){
@@ -67,16 +59,25 @@ export class PokemonService{
     return color[1];
   }
 
-  getPokemonId(pokeDetails: any){
+  getPokemonId(pokeDetails: any) {
     const pokeId = pokeDetails.id.toString();
-    if(pokeId.length <= 3){
-      return pokeDetails.id.toString().padStart(3, '0');
-    }
-    return pokeDetails.id;
+    return pokeId.length <= 3 ? pokeDetails.id.toString().padStart(3, '0') : pokeDetails.id;
   }
 
   getPokemonType(pokeDetails:any){
     return pokeDetails.types.map((pokeDetails: any) => pokeDetails.type.name);
+  }
+
+  getStatsPoke(stat: any){
+    const stats:statsPoke = {
+      hp: stat[0].base_stat,
+      attack: stat[1].base_stat,
+      defense: stat[2].base_stat,
+      specialAttack: stat[3].base_stat,
+      specialDefense: stat[4].base_stat,
+      speed: stat[5].base_stat,
+    }
+    return stats;
   }
 
   ngOnDestroy() {
