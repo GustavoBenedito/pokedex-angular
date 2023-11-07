@@ -1,14 +1,14 @@
-<div class="pokemon-card" (click)="openDrawer(pokemon)">
+<div class="pokemon-card" (click)="openDrawer(pokemon)" >
     <div class="pokemon-card-img" [ngStyle]="{'background-color': pokemon.color }">
         <img [src]="pokemon.img">
     </div>
     <div class="footer-card">
       <div class="text-card">
         <p class="poke-id">
-          Nº {{ pokemon.id }}
+          #{{ pokemon.id }}
         </p>
         <p class="poke-name">
-            # {{ pokemon.name }}
+            {{ pokemon.name }}
         </p>
       </div>
       <div  class="type-div">

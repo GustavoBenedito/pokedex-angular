@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subscription, catchError, forkJoin, map, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { Pokemon } from '../Pokemon';
+import { Pokemon, statsPoke } from '../Pokemon';
 import { prominent } from 'color.js'
 import { Injectable } from '@angular/core';
 
@@ -10,9 +10,7 @@ export const BASE_URL = 'https://pokeapi.co/api/v2';
 @Injectable()
 export class PokemonService{
   pokemons: Array<Pokemon> = [];
-  pokeImgList:any = [];
-  pokedexLimit = 256;
-  pokemonsDetails:any = {};
+  pokedexLimit = 6;
 
   private apiPokeSubscription: Subscription = new Subscription;
 
@@ -38,59 +36,57 @@ export class PokemonService{
     return forkJoin(observables);
   }
 
-  makeAPIPokemonImgList(){
+  async getAllPokeDetails(pokeDetails: any){
     for(let i = 0; i < this.pokedexLimit; i++){
-      // versao dos sonhos
-      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${i+1}.svg`;
-
-      //versao oficial
-      this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i+1}.png`;
-
-      //versao 'de casa'
-      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i+1}.png`;
-
-      //versao yellow
-      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/${i+1}.png`;
-
-      //versao black white
-      // this.pokemons[i].img =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/${i+1}.png`;
-
+      this.pokemons[i].id = this.getPokemonId(pokeDetails[i]);
+      this.pokemons[i].img = this.getPokeImg(pokeDetails[i].id);
+      this.pokemons[i].types = this.getPokemonType(pokeDetails[i]);
+      this.pokemons[i].color = await this.getPokeColorAverage(this.pokemons[i].img);
+      this.pokemons[i].height = this.getPokeHeight(pokeDetails[i].height);
+      this.pokemons[i].weight = this.getPokeWeight(pokeDetails[i].weight);
+      this.pokemons[i].stats = this.getStatsPoke(pokeDetails[i].stats);
     }
-    this.makeAPIColorAverage();
+    return this.pokemons;
   }
 
-  async makeAPIColorAverage(){
-    for(let i = 0; i < this.pokedexLimit; i++){
-        this.pokemons[i].color = await prominent(this.pokemons[i].img, {format: 'hex'});
-        this.pokemons[i].color = this.pokemons[i].color[1];
-    }
+  getPokeImg(pokeId: string){
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeId}.png`;
   }
 
-  makeAPIPokemonsDetails(){
-    for(let i = 0; i < this.pokedexLimit; i++){
-      if(this.pokemonsDetails[i].id.toString().length < 2){
-        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-      }
-      else if(this.pokemonsDetails[i].id.toString().length <= 3){
-        this.pokemons[i].id = this.pokemonsDetails[i].id.toString().padStart(3, '0');
-      }
-      else{
-        this.pokemons[i].id = this.pokemonsDetails[i].id;
-      }
-      if(this.pokemonsDetails[i].types.length > 1){
-        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name, this.pokemonsDetails[i].types[1].type.name];
-      }
-      else{
-        this.pokemons[i].types = [this.pokemonsDetails[i].types[0].type.name];
-      }
+  async getPokeColorAverage(pokeImg: string){
+    const color = await prominent(pokeImg, {format: 'hex'});
+    return color[1];
+  }
+
+  getPokemonId(pokeDetails: any) {
+    const pokeId = pokeDetails.id.toString();
+    return pokeId.length <= 3 ? pokeDetails.id.toString().padStart(3, '0') : pokeDetails.id;
+  }
+
+  getPokemonType(pokeDetails:any){
+    return pokeDetails.types.map((pokeDetails: any) => pokeDetails.type.name);
+  }
+
+  getPokeHeight(pokeHeight:number){
+    return pokeHeight/10;
+  }
+
+  getPokeWeight(pokeWeight:number){
+    return pokeWeight/10;
+  }
+  getStatsPoke(stat: any){
+    const stats:statsPoke = {
+      hp: stat[0].base_stat,
+      attack: stat[1].base_stat,
+      defense: stat[2].base_stat,
+      specialAttack: stat[3].base_stat,
+      specialDefense: stat[4].base_stat,
+      speed: stat[5].base_stat,
     }
+    return stats;
   }
 
   ngOnDestroy() {
-    if (this.apiPokeSubscription) {
-      this.apiPokeSubscription.unsubscribe();
-    }
+      this.apiPokeSubscription?.unsubscribe();
   }
 }
-
-

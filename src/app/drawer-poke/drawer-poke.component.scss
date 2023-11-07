@@ -1,4 +1,63 @@
-.teste{
+@import '../pokemon-card/colorTypes.scss';
+
+.drawer-header{
+  padding-top: 5%;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.drawer-header h1{
+  opacity: 1;
+  color: #6d6d6d;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+.drawer-header img{
+  height: 45%;
+  width: 45%;
+}
+.drawer-main {
+  display: flex;
+  justify-content: space-evenly;
+}
+.types{
+  display: flex;
+  flex-direction: row;
+}
+.info, .stats{
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.info{
   background-color: red;
-  position: absolute;
+  display: flex;
+}
+.stats{
+  background-color: blue;
+}
+.info-column, .info-cont{
+  display: flex;
+  flex-direction: column;
+}
+.info-column span{
+  font-weight: 600;
+}
+.type-button{
+  align-items: center;
+  height: 20px;
+  max-width: 70px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  color: white;
+}
+.info .id {
+  display: flex;
+  justify-content: start;
 }

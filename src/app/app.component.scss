@@ -2,13 +2,14 @@
     font-family: 'Pokemon Solid', sans-serif;
 }
 header{
-    height: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 2.5%;
-    align-items: center;
-    text-align: center;
+  background-color: red;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2.5%;
+  align-items: center;
+  text-align: center;
 }
 .button-theme-language{
     opacity: 0.8;
@@ -19,7 +20,7 @@ header{
     border: 1px solid #dedede;
     background-color: #fffafa;
 }
-.button-theme-language:hover, .language-list-view button:hover{
+.button-theme-language:hover, .language-list-view button:hover, .search-bar button:hover, .drawer nav button:hover{
     opacity: 1;
     cursor: pointer;
 }
@@ -73,6 +74,9 @@ mat-drawer{
   text-align: center;
 }
 
+.search-bar, .search-bar input, .search-bar button{
+  background-color: #f6f6f6;
+}
 .search-bar input{
   height: 35px;
   width: 20em;
@@ -85,24 +89,35 @@ mat-drawer{
 }
 .search-bar button{
   width: 10%;
-  background-color: #f6f6f6;
   border-radius: 0.5rem;
   border: none;
   opacity: 0.5;
   transition: 0.2s;
   min-width: 33px;
 }
-.search-bar button:hover{
-  cursor: pointer;
-  opacity: 1;
-}
 .search-bar button img{
   width: 20px;
 }
 .drawer{
-  background-color: white;
   width: 45%;
   min-width: 400px;
   max-height: 1200px;
   position: fixed;
+}
+.drawer nav{
+  height: 50px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+.drawer nav button {
+  position: relative;
+  left: 1%;
+  border: 0;
+  background-color: transparent;
+}
+.drawer nav button img{
+  height: 25px;
+  width: 25px;
 }

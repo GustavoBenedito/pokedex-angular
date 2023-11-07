@@ -8,17 +8,15 @@ import { PokemonService } from "../service/pokemon.service";
 })
 export class DrawerPokeComponent {
   @Input() pokemonData: any;
-  constructor(public pokemonService: PokemonService) {
+  constructor(public pokemonService:PokemonService) {
   };
 
-  ngOnInit(){
-    console.log(this.pokemonData);
+  ngOnChanges(){
     if(this.pokemonData){
-      this.getDrawerData(this.pokemonData);
+      this.settingInfos(this.pokemonData);
     }
   }
 
-  getDrawerData(pokemonData:any){
-    console.log(pokemonData);
+  settingInfos(data:any){
   }
 }

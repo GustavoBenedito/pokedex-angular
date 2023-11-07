@@ -20,7 +20,7 @@ export class AppComponent {
   pokemons: Array<Pokemon> = [];
   shouldViewDrawer = false;
   pokemonData: any;
-  
+
   constructor(private translate: TranslateService, public pokemonService: PokemonService, public drawerPokeComponent: DrawerPokeComponent) {
     translate.setDefaultLang(this.language);
   }
@@ -47,14 +47,12 @@ export class AppComponent {
 
   getPokemonList(){
     this.pokemonService.pokemons = this.pokemons;
-    this.pokemonService.makeAPIPokemonImgList();
   }
 
   getPokemonsDetails(){
     this.pokemonService.getAPIPokemonsDetails().subscribe(
       (res) => {
-        this.pokemonService.pokemonsDetails = res;
-        this.pokemonService.makeAPIPokemonsDetails();
+        this.pokemonService.getAllPokeDetails(res);
     }
     );
   }
@@ -62,5 +60,8 @@ export class AppComponent {
   openDrawer(pokemonData: any): void {
     this.pokemonData = pokemonData;
     this.drawer.toggle();
+  }
+  teste(){
+    console.log('teste')
   }
 }

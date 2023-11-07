@@ -17,14 +17,10 @@ export class PokemonCardComponent {
   ) {}
 
   img: any;
-  @Input()
-  pokemon: any;
-  @Input()
-  pokedexLimit: any;
+  @Input() pokemon: any;
+  @Input() pokedexLimit: any;
 
   openDrawer(pokemonData: any){
-    console.log('teste')
-    this.drawerPokeComponent.getDrawerData(pokemonData);
     this.appComponent.openDrawer(pokemonData);
   }
 }
