@@ -5,32 +5,32 @@
 <main *ngIf="pokemonData" class="drawer-main">
   <section class="info">
     <div class="info-column">
-      <div class="id">
+      <div class="info-div id">
         <span>ID</span>
       </div>
-      <div class="height">
+      <div class="info-div height">
         <span>Height</span>
       </div>
-      <div class="weight">
+      <div class="info-div weight">
         <span>Weight</span>
       </div>
-      <div class="types">
+      <div class="info-div types">
         <span>Types</span>
       </div>
       <!-- <div class="abilities">{{pokemonData.id}}</div> -->
       <!-- <div class="forms"></div> -->
     </div>
     <div class="info-cont">
-      <div class="id-cont">
+      <div class="info-div id-cont">
         #{{pokemonData.id}}
       </div>
-      <div class="height-cont">
+      <div class="info-div height-cont">
         {{pokemonData.height}}m
       </div>
-      <div class="weight-cont">
+      <div class="info-div weight-cont">
         {{pokemonData.weight}}kg
       </div>
-      <div class="types cont">
+      <div class="info-div types-cont">
         <div *ngFor="let type of pokemonData.types; index as i" [ngClass]="pokemonData.types[i]" class="type-button">
           {{pokemonData.types[i]}}
       </div>
@@ -39,7 +39,6 @@
   </section>
   <section class="stats">
     <div class="stats-column">
-
     </div>
     <div class="HP">
       <span>HP</span>
@@ -59,11 +58,11 @@
     <div class="Speed">
       <span>Speed</span>
     </div>
-    {{pokemonData.stats.hp}}
-    {{pokemonData.stats.attack}}
-    {{pokemonData.stats.defense}}
-    {{pokemonData.stats.specialAttack}}
-    {{pokemonData.stats.specialDefense}}
-    {{pokemonData.stats.speed}}
+      {{pokemonData.stats.hp}}
+      {{pokemonData.stats.attack}}
+      {{pokemonData.stats.defense}}
+      {{pokemonData.stats.specialAttack}}
+      {{pokemonData.stats.specialDefense}}
+      {{pokemonData.stats.speed}}
   </section>
 </main>

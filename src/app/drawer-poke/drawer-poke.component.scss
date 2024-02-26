@@ -22,19 +22,19 @@
 }
 .drawer-main {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  font-size: 20px;
 }
 .types{
   display: flex;
   flex-direction: row;
 }
 .info, .stats{
-  width: 40%;
+  width: 35%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .info{
-  background-color: red;
   display: flex;
 }
 .stats{
@@ -47,17 +47,27 @@
 .info-column span{
   font-weight: 600;
 }
+.info-div{
+  margin-bottom: 5px;
+}
 .type-button{
   align-items: center;
   height: 20px;
-  max-width: 70px;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-size: 13px;
   color: white;
 }
 .info .id {
   display: flex;
   justify-content: start;
+}
+.types-cont{
+  display: flex;
+  width: 100px;
+  justify-content: start;
+}
+.type-button{
+  margin-right: 5px;
 }
